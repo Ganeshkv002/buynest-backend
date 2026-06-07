@@ -8,17 +8,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/ProductImages",express.static(path.join(__dirname, "ProductImages")));
+console.log("ENV KEYS:");
+console.log(Object.keys(process.env).filter(key =>
+    key.includes("RAZOR") || key.includes("GROQ")
+));
+
+app.use("/ProductImages", express.static(path.join(__dirname, "ProductImages")));
 
 // Routes
 const customerRegisterRoutes = require("./routes/CustomerRegistration");
 app.use("/api/customers", customerRegisterRoutes);
 
 const customerLogin = require("./routes/CustomerLogin")
-app.use("/api/customers",customerLogin)
+app.use("/api/customers", customerLogin)
 
 const products = require("./routes/Products");
-app.use("/api",products)
+app.use("/api", products)
 
 const cart = require("./routes/Cart");
 app.use("/api", cart);
@@ -39,10 +44,10 @@ const myOrders = require("./routes/MyOrders");
 app.use("/api/orders", myOrders);
 
 const wishlistRoutes = require("./routes/WishList")
-app.use("/api/wishlist",wishlistRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 const Aichat = require("./routes/Chat")
-app.use("/api",Aichat)
+app.use("/api", Aichat)
 
 const PORT = process.env.PORT || 5000;
 
