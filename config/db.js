@@ -19,6 +19,10 @@
 
 const mysql = require("mysql2/promise");
 
+if (!process.env.MYSQL_URL) {
+  console.error("❌ MYSQL_URL is missing in environment");
+}
+
 const pool = mysql.createPool(process.env.MYSQL_URL);
 
 module.exports = pool;
