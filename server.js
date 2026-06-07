@@ -37,7 +37,7 @@ app.use("/api", deleteCart)
 const paymentRoute = require("./routes/Payment");
 app.use("/api/payment", paymentRoute);
 
-const orderRoutes = require("./routes/OrdersList");
+const orderRoutes = require("./routes/OrdersList.js");
 app.use("/api/orders", orderRoutes);
 
 const myOrders = require("./routes/MyOrders");
